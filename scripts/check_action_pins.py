@@ -89,7 +89,7 @@ def validate_action_use(value, path, errors):
         errors.append(f"{location}: uses value has surrounding whitespace")
     elif "${{" in reference or "}}" in reference:
         errors.append(f"{location}: expressions are not allowed in uses")
-    elif reference.startswith("./") and len(reference) > 2:
+    elif reference.startswith("./"):
         return
     elif DOCKER_REFERENCE.fullmatch(reference):
         return

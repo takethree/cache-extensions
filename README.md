@@ -21,6 +21,9 @@ templates. Stage new files before running discovery. Administrators should make
 the `validate` job in **Validate pinned GitHub Actions** a required status check.
 Immutable references prevent tags from moving; they do not prove that upstream
 code or its transitive dependencies are trustworthy.
+These workflow and validator changes are reviewed from the PR itself. Require
+trusted review and protection for changes to both; a required check alone is
+not tamper-proof against a malicious PR.
 
 These helpers are designed to simplify your interactions with Redis, including fine tuned caching for lists, allowing you to create/edit/update individual items in a list without replacing the entire cache in a way that helps prevent collisions.
 
