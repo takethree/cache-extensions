@@ -2,6 +2,26 @@
 
 # Redis Caching Helpers
 
+## GitHub Actions dependency pins
+
+Remote `uses:` references in workflows, composite actions, reusable workflow calls,
+and owned workflow templates must use full lowercase 40-character commit SHAs.
+Keep the original ref in an inline comment. Local `./` references are allowed;
+`docker://` images must use a `sha256` digest.
+
+After reviewing an upstream ref and resolving it to a commit, validate changes with:
+
+```sh
+python3 -m pip install --require-hashes --only-binary=:all: -r scripts/action-pins-requirements.txt
+python3 scripts/check_action_pins.py
+```
+
+The validator discovers tracked workflow YAML, action metadata, and workflow
+templates. Stage new files before running discovery. Administrators should make
+the `validate` job in **Validate pinned GitHub Actions** a required status check.
+Immutable references prevent tags from moving; they do not prove that upstream
+code or its transitive dependencies are trustworthy.
+
 These helpers are designed to simplify your interactions with Redis, including fine tuned caching for lists, allowing you to create/edit/update individual items in a list without replacing the entire cache in a way that helps prevent collisions.
 
 ## About Take Three Technologies
