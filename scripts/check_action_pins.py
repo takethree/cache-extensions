@@ -198,12 +198,11 @@ def inspect_document(document, path, root, errors):
                 for using in mapping_values(runs, "using")
             ):
                 inspect_steps(runs)
-    else:
-        for jobs in mapping_values(document, "jobs"):
-            for _, job in mapping_items(jobs):
-                for value in mapping_values(job, "uses"):
-                    validate_action_use(value, path, errors, reusable_workflow=True)
-                inspect_steps(job)
+    for jobs in mapping_values(document, "jobs"):
+        for _, job in mapping_items(jobs):
+            for value in mapping_values(job, "uses"):
+                validate_action_use(value, path, errors, reusable_workflow=True)
+            inspect_steps(job)
 
 
 def inspect_file(path, root, errors):
